@@ -34,7 +34,7 @@ export class KiboAuthService {
     this.httpClient.interceptors.response.use(
       (response) => response,
       async (error) => {
-        if (error.response?.status === 401 && !error.config._retry) {
+        if (error.response && error.response.status === 401 && !error.config._retry) {
           error.config._retry = true;
           try {
             await this.refreshAccessToken();
@@ -55,7 +55,6 @@ export class KiboAuthService {
   async initialize(): Promise<void> {
     try {
       await this.authenticate();
-      console.log('Kibo authentication initialized successfully');
     } catch (error) {
       console.error('Failed to initialize Kibo authentication:', error);
       throw error;
@@ -95,8 +94,8 @@ export class KiboAuthService {
     } catch (error) {
       console.error('Authentication failed:', error);
       if (axios.isAxiosError(error)) {
-        console.error('Response data:', error.response?.data);
-        console.error('Response status:', error.response?.status);
+        console.error('Response data:', error.response && error.response.data);
+        console.error('Response status:', error.response && error.response.status);
       }
       throw new Error(`Kibo authentication failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
@@ -157,7 +156,7 @@ export class KiboAuthService {
    */
   private async addAuthHeaders(config: any): Promise<any> {
     // Skip auth for authentication requests
-    if (config.url?.includes('/authtickets/oauth')) {
+    if (config.url && config.url.includes('/authtickets/oauth')) {
       return config;
     }
 
@@ -199,8 +198,8 @@ export class KiboAuthService {
     } catch (error) {
       console.error('API request failed:', error);
       if (axios.isAxiosError(error)) {
-        console.error('Response data:', error.response?.data);
-        console.error('Response status:', error.response?.status);
+        console.error('Response data:', error.response && error.response.data);
+        console.error('Response status:', error.response && error.response.status);
       }
       throw error;
     }

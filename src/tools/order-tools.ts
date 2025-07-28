@@ -387,7 +387,7 @@ async function handleOrderStatusUpdate(
               oldStatus: currentOrder.status,
               newStatus: response.status,
               note: params.note,
-              updatedDate: response.auditInfo?.updateDate
+              updatedDate: response.auditInfo && response.auditInfo.updateDate
             },
             message: `Order ${params.orderNumber} status updated from ${currentOrder.status} to ${params.status}`
           }, null, 2)

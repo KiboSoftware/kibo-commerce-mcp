@@ -175,7 +175,7 @@ export abstract class BaseKiboService {
         switch (status) {
           case 400:
             errorMessage = 'Bad request - invalid parameters';
-            details = data?.message || data?.errorMessage || details;
+            details = (data && data.message) || (data && data.errorMessage) || details;
             break;
           case 401:
             errorMessage = 'Unauthorized - authentication failed';
@@ -187,7 +187,7 @@ export abstract class BaseKiboService {
             break;
           case 404:
             errorMessage = 'Resource not found';
-            details = data?.message || data?.errorMessage || 'The requested resource was not found';
+            details = (data && data.message) || (data && data.errorMessage) || 'The requested resource was not found';
             break;
           case 429:
             errorMessage = 'Rate limit exceeded';
@@ -199,7 +199,7 @@ export abstract class BaseKiboService {
             break;
           default:
             errorMessage = `HTTP ${status} error`;
-            details = data?.message || data?.errorMessage || details;
+            details = (data && data.message) || (data && data.errorMessage) || details;
         }
       } else if (error.request) {
         errorMessage = 'Network error';

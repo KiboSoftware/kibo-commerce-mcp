@@ -179,9 +179,8 @@ process.on('SIGTERM', () => {
 });
 
 // Start the server
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch((error) => {
-    console.error('Unhandled error:', error);
-    process.exit(1);
-  });
-}
+// Always start when this file is executed (it's a CLI tool, not a library)
+main().catch((error) => {
+  console.error('Unhandled error:', error);
+  process.exit(1);
+});

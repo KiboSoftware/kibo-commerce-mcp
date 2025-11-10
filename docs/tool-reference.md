@@ -75,6 +75,96 @@ Retrieve product categories and category tree structure.
 List all categories under the "electronics" category
 ```
 
+### `kibo_product_update`
+
+Update product information including descriptions, pricing, and SEO metadata. Ideal for AI-powered content enrichment. This tool uses a read-before-write pattern to preserve existing product data.
+
+**⚠️ Permission Required:** This tool requires admin API credentials with product write permissions.
+
+**Parameters:**
+- `productCode` (string, required) - Product code to update
+- `content` (object, optional) - Product content fields to update:
+  - `productFullDescription` (string) - Full product description (HTML supported)
+  - `productShortDescription` (string) - Short product description
+  - `productName` (string) - Product name
+  - `metaTagDescription` (string) - SEO meta description
+  - `metaTagKeywords` (string) - SEO meta keywords
+  - `metaTagTitle` (string) - SEO meta title
+- `price` (number, optional) - Product price
+- `salePrice` (number, optional) - Sale price
+- `note` (string, optional) - Optional note for update audit trail
+
+**Example Usage:**
+```
+Update product LAPTOP-001 with AI-enriched description focusing on gaming features
+```
+
+**Response Format:**
+```json
+{
+  "success": true,
+  "data": {
+    "productCode": "LAPTOP-001",
+    "productName": "Gaming Laptop",
+    "changes": {
+      "content": {
+        "old": { "productFullDescription": "..." },
+        "new": { "productFullDescription": "AI-enriched description..." }
+      }
+    },
+    "updatedDate": "2025-01-10T10:00:00Z",
+    "note": "AI content enrichment"
+  },
+  "message": "Product LAPTOP-001 updated successfully"
+}
+```
+
+**Best Practices:**
+- Always review AI-generated content before updating
+- Use the `note` parameter to document the reason for changes
+- Consider batch updates with rate limiting to avoid API throttling
+- Test updates on non-production products first
+
+### `kibo_product_create`
+
+Create a new product in the catalog with basic information.
+
+**⚠️ Permission Required:** This tool requires admin API credentials with product create permissions.
+
+**Parameters:**
+- `productCode` (string, required) - Unique product code/SKU
+- `productName` (string, required) - Product name
+- `productFullDescription` (string, optional) - Full product description (HTML supported)
+- `productShortDescription` (string, optional) - Short product description
+- `price` (number, optional) - Product price
+- `productTypeId` (number, optional, default: 1) - Product type ID (1 = standard product)
+- `productUsage` (string, optional, default: "Standard") - Product usage type
+
+**Example Usage:**
+```
+Create a new product with code NEW-MOUSE-001 for a wireless gaming mouse
+```
+
+**Response Format:**
+```json
+{
+  "success": true,
+  "data": {
+    "productCode": "NEW-MOUSE-001",
+    "productName": "Wireless Gaming Mouse",
+    "price": 79.99,
+    "createdDate": "2025-01-10T10:00:00Z"
+  },
+  "message": "Product NEW-MOUSE-001 created successfully"
+}
+```
+
+**Best Practices:**
+- Ensure product codes are unique before creation
+- Provide meaningful product names and descriptions
+- Set appropriate product types and usage values
+- Consider creating products in draft mode first if available
+
 ## Order Tools
 
 ### `kibo_order_search`

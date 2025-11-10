@@ -9,12 +9,23 @@ A Model Context Protocol (MCP) server providing seamless integration with Kibo C
 ## Features
 
 - **🛍️ Product Management**: Search, retrieve, and analyze product catalogs with advanced filtering
+  - ✍️ **NEW: Product Write Operations** - Update product descriptions and create new products (requires admin permissions)
 - **📦 Order Operations**: Complete order lifecycle management from search to fulfillment
 - **👥 Customer Management**: Comprehensive customer data access and order history
 - **📊 Inventory Operations**: Real-time inventory tracking across multiple locations
 - **🔧 Site Configuration**: Access to site settings and configuration data
 - **🔐 Secure Authentication**: OAuth2 with automatic token refresh and management
 - **📱 Multi-tenant Support**: Support for multiple Kibo Commerce environments
+
+### 🤖 AI-Powered Content Enrichment
+
+The MCP server now supports write operations for AI-powered content enrichment:
+- **Product Description Enhancement**: Automatically improve product descriptions with AI-generated content
+- **SEO Optimization**: Generate meta tags, keywords, and SEO-friendly content
+- **Bulk Updates**: Process multiple products efficiently with AI assistance
+- **Content Localization**: Adapt product content for different audiences
+
+> **⚠️ Important**: Write operations (`kibo_product_update`, `kibo_product_create`) require admin API credentials with appropriate permissions. Ensure your application credentials have Product Admin scope before using these features.
 
 ## Quick Start
 

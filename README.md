@@ -1,5 +1,16 @@
 # Kibo Commerce MCP Server
 
+> **⚠️ DEPRECATED**: This package is deprecated and no longer maintained. Please use the official Kibo MCP Server instead.
+>
+> **Replacement**: [https://docs.kibocommerce.com/pages/kibo-mcp-server](https://docs.kibocommerce.com/pages/kibo-mcp-server)
+>
+> This repository and npm package will no longer receive updates or security fixes.
+
+---
+
+<details>
+<summary>Legacy documentation (click to expand)</summary>
+
 A Model Context Protocol (MCP) server providing seamless integration with Kibo Commerce platform through their TypeScript SDK.
 
 [![npm version](https://badge.fury.io/js/@kibocommerce%2Fkibo-commerce-mcp.svg)](https://badge.fury.io/js/@kibocommerce%2Fkibo-commerce-mcp)
@@ -405,3 +416,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Kibo Commerce](https://kibocommerce.com/) for the e-commerce platform
 - [Model Context Protocol](https://modelcontextprotocol.io/) for the integration framework
 - [Anthropic](https://anthropic.com/) for Claude Desktop and MCP ecosystem
+
+</details>
